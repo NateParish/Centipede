@@ -137,6 +137,9 @@ namespace SFML_Test
             centipede.setupSprite();
 
 
+           
+
+
             Vector2f mushroomPosition = new Vector2f(100, 250);
             Vector2f mushroomSize = new Vector2f(8, 8);
             mushroom.setSize(mushroomSize);
@@ -157,6 +160,14 @@ namespace SFML_Test
             app.Closed += new EventHandler(OnClose);
             app.Resized += new EventHandler<SizeEventArgs>(WindowResized);
             app.KeyPressed += (sender, e) => KeyPressed(sender, e, player, lasers, fire);
+
+
+            EnemyCentipede centipede2 = new EnemyCentipede();
+            Vector2f cent2Pos = new Vector2f(400, 850);
+            centipede2.setPosition(cent2Pos);
+            centipede2.setSpriteSheet(spriteSheet);
+            centipede2.createBody(8);
+
 
             spawnMushrooms(mushroomSize, gameboardPosition, gameboardHeight, gameboardWidth, mushrooms, spriteSheet);
 
@@ -283,8 +294,10 @@ namespace SFML_Test
 
                 scoreboard.update(player);
                 centipede.animate();
+                centipede2.animate();
                 scoreboard.draw(app);
                 centipede.draw(app);
+                centipede2.draw(app);
 
                 foreach(Mushroom shroom in mushrooms)
                 {

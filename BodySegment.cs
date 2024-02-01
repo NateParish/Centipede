@@ -20,9 +20,11 @@ namespace Centipede
         bool isDead = false;
         Texture texture;
         Sprite sprite = new Sprite();
-        uint animationTimer = 0;
-        uint animationDelay = 2;
-        uint currentSpriteIndex = 0;
+        int animationTimer = 0;
+        int animationDelay = 2;
+        int currentSpriteIndex = 0;
+        bool isHead = false;
+        int animationOffset = 0;
 
         IntRect Head1Color1 = new IntRect(4, 18, 7, 8);
         IntRect Head2Color1 = new IntRect(21, 18, 7, 8);
@@ -50,39 +52,52 @@ namespace Centipede
                 animationTimer = 0;
             }
 
-            if(switchToNextImage)
+            int spriteIndex;
+
+            if (currentSpriteIndex + animationOffset < 7)
             {
+                spriteIndex = currentSpriteIndex + animationOffset;
+            }
+            else 
+            {
+                spriteIndex = (currentSpriteIndex + animationOffset) % 7;
+            }
 
 
-                if(currentSpriteIndex == 0)
+
+
+            if(switchToNextImage)            
+            
+            {
+                if(spriteIndex == 0)
                 {
                     sprite.TextureRect = Head2Color1;
                 }
-                if (currentSpriteIndex == 1)
+                if (spriteIndex == 1)
                 {
                     sprite.TextureRect = Head3Color1;
                 }
-                if (currentSpriteIndex == 2)
+                if (spriteIndex == 2)
                 {
                     sprite.TextureRect = Head4Color1;
                 }
-                if (currentSpriteIndex == 3)
+                if (spriteIndex == 3)
                 {
                     sprite.TextureRect = Head5Color1;
                 }
-                if (currentSpriteIndex == 4)
+                if (spriteIndex == 4)
                 {
                     sprite.TextureRect = Head6Color1;
                 }
-                if (currentSpriteIndex == 5)
+                if (spriteIndex == 5)
                 {
                     sprite.TextureRect = Head7Color1;
                 }
-                if (currentSpriteIndex == 6)
+                if (spriteIndex == 6)
                 {
                     sprite.TextureRect = Head8Color1;
                 }
-                if (currentSpriteIndex == 7)
+                if (spriteIndex == 7)
                 {
                     sprite.TextureRect = Head1Color1;
                 }
@@ -107,6 +122,16 @@ namespace Centipede
         public void update()
         {
 
+        }
+
+        public void setAnimationOffset(int newOffset)
+        {
+            animationOffset = newOffset;
+        }
+
+        public void setIsHead(bool isSegmentHead)
+        {
+            isHead = isSegmentHead;
         }
 
         public void setPosition(Vector2f newPosition)
