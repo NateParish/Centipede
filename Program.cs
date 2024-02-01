@@ -16,17 +16,13 @@ namespace SFML_Test
 
         static void OnClose(object sender, EventArgs e)
         {
-            // Close the window when OnClose event is received
             RenderWindow window = (RenderWindow)sender;
             window.Close();
         }
 
         static void WindowResized(object sender, SizeEventArgs e)
         {
-            // Handle window resizing
             RenderWindow window = (RenderWindow)sender;
-
-            // Ensure that the view is updated to maintain the same aspect ratio
             View view = window.GetView();
             view.Size = new Vector2f(e.Width, e.Height);
             window.SetView(view);
@@ -34,7 +30,7 @@ namespace SFML_Test
 
         static void KeyPressed(object sender, KeyEventArgs e, Player player, List<Laser> lasers, bool fire)
         {
-            // Close the window when OnClose event is received
+
             RenderWindow window = (RenderWindow)sender;
 
             if (e.Code == Keyboard.Key.Left)
@@ -174,14 +170,14 @@ namespace SFML_Test
 
             Color windowColor = new Color(0, 0, 0);
 
-            // Start the game loop
+
             while (app.IsOpen)
             {
-                // Process events
+
                 app.DispatchEvents();
                 //Console.WriteLine(fire.ToString());
 
-                // Clear screen
+
                 app.Clear(windowColor);
                 //List<Laser> lasersTempList = new List<Laser>();
                 //Console.WriteLine(lasers.Count());
@@ -307,12 +303,10 @@ namespace SFML_Test
 
 
                 player.draw(app);
-                
 
-                //Console.WriteLine(lasers.Count);
-                // Update the window
+
                 app.Display();
-            } //End game loop
-        } //End Main()
-    } //End Program
+            } 
+        } 
+    } 
 }
