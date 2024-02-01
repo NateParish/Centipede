@@ -82,7 +82,13 @@ namespace Centipede
 
                     if (position.Y <= mushroom.getPosition().Y + mushroomSize)
                     {
-                        returnValue = true;
+
+                        if(position.Y >= mushroom.getPosition().Y)
+                        {
+                            returnValue = true;
+
+                        }
+
                     }
                         
                 }

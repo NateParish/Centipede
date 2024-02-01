@@ -24,20 +24,22 @@ namespace Centipede
         uint velocity = 10;
         Color color = new Color(0, 255, 0);
         RectangleShape bodyRect = new RectangleShape();
-        Texture texture = new Texture("C:\\Programming\\Centipede\\Assets\\SpriteSheet.png");
+        Texture texture;
         Sprite sprite = new Sprite();
         uint fireCooldownCounter = 0;
-        uint fireCooldownLength = 10;
+        uint fireCooldownLength = 5;
         bool isOKToFire = false;
-        
+
+        int playerScore = 0;
+
 
         public void update()
         {
 
-            if(fireCooldownCounter >= fireCooldownLength) 
+            if (fireCooldownCounter >= fireCooldownLength)
             {
                 fireCooldownCounter = fireCooldownLength;
-                isOKToFire=true;
+                isOKToFire = true;
             }
             else
             {
@@ -59,7 +61,7 @@ namespace Centipede
             sprite.Position = position;
         }
 
-        public Vector2f getPosition() 
+        public Vector2f getPosition()
         {
             return position;
         }
@@ -82,7 +84,7 @@ namespace Centipede
             sprite.Position = position;
         }
 
-        public void moveRight() 
+        public void moveRight()
         {
             position.X += velocity;
             bodyRect.Position = position;
@@ -90,14 +92,14 @@ namespace Centipede
 
         }
 
-        public void moveUp() 
+        public void moveUp()
         {
             position.Y -= velocity;
             bodyRect.Position = position;
             sprite.Position = position;
         }
 
-        public void moveDown() 
+        public void moveDown()
         {
             position.Y += velocity;
             bodyRect.Position = position;
@@ -116,7 +118,7 @@ namespace Centipede
 
             if (fireCooldownCounter >= fireCooldownLength)
             {
-                
+
                 Vector2f laserPosition = new Vector2f();
                 Vector2f laserSize = new Vector2f();
                 laserSize.X = 5;
@@ -132,22 +134,38 @@ namespace Centipede
         }
 
 
-        public void setSize(Vector2f newSize) 
+        public void setSize(Vector2f newSize)
         {
             size = newSize;
             bodyRect.Size = size;
         }
-        public void setColor(Color newColor) 
+        public void setColor(Color newColor)
         {
             color = newColor;
         }
         public void setupSprite()
         {
             sprite.Texture = texture;
-            sprite.TextureRect = new IntRect(17, 9, 16, 8);
+            sprite.TextureRect = new IntRect(21, 9, 7, 8);
             sprite.Position = position;
             sprite.Scale = new Vector2f(scale, scale);
         }
+
+        public void setSpriteSheet(Texture newSpriteSheet)
+        {
+            texture = newSpriteSheet;
+        }
+
+        public void addPointsToScore(int points)
+        {
+            playerScore = playerScore + points;
+        }
+
+        public int getPlayerScore() 
+        {
+            return playerScore;
+        }
+
 
 
 

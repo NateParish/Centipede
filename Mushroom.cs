@@ -17,7 +17,7 @@ namespace Centipede
         float scale = 5;
         uint damage = 0;
         bool isDead = false;
-        Texture texture = new Texture("C:\\Programming\\Centipede\\Assets\\SpriteSheet.png");
+        Texture texture;
         Sprite sprite = new Sprite();
 
         IntRect TextureTheme1Color1 = new IntRect(68, 72, 8, 8);
@@ -107,6 +107,11 @@ namespace Centipede
             sprite.TextureRect = TextureTheme1Color2Damage2;
             sprite.Position = position;
             sprite.Scale = new Vector2f(scale, scale);
+        }
+
+        public void setSpriteSheet(Texture newSpriteSheet)
+        {
+            texture = newSpriteSheet;
         }
 
     }
