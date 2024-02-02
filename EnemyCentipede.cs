@@ -36,6 +36,14 @@ namespace Centipede
 
         }
 
+        public void move()
+        {
+            foreach(var segment in bodySegments)
+            {
+                segment.move();
+            }    
+        }
+
             public void setPosition(Vector2f newPosition)
         {
             position = newPosition;
@@ -55,10 +63,15 @@ namespace Centipede
                 newPosition.X = position.X + 40 *i;
                 newPosition.Y = position.Y;
                 segment.setPosition(newPosition);
-                segment.setSize(position);
+                segment.setSize(new Vector2f(40,40));
                 segment.setSpriteSheet(spriteSheet);
                 segment.setupSprite();
                 segment.setAnimationOffset(i%8);
+                if(i == 0)
+                {
+                    segment.setIsHead(true);
+                }
+
                 bodySegments.Add(segment);            
             }
 

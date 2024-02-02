@@ -25,6 +25,10 @@ namespace Centipede
         int currentSpriteIndex = 0;
         bool isHead = false;
         int animationOffset = 0;
+        string movingRightOrLeft = "left";
+        string movingUpOrDown = "down";
+        float speed = 4;
+        bool turnLeftFlag = false;
 
         IntRect Head1Color1 = new IntRect(4, 18, 7, 8);
         IntRect Head2Color1 = new IntRect(21, 18, 7, 8);
@@ -34,6 +38,15 @@ namespace Centipede
         IntRect Head6Color1 = new IntRect(89, 18, 7, 8);
         IntRect Head7Color1 = new IntRect(106, 18, 7, 8);
         IntRect Head8Color1 = new IntRect(123, 18, 7, 8);
+
+        IntRect Body1Color1 = new IntRect(4, 36, 7, 8);
+        IntRect Body2Color1 = new IntRect(21, 36, 7, 8);
+        IntRect Body3Color1 = new IntRect(38, 36, 7, 8);
+        IntRect Body4Color1 = new IntRect(55, 36, 7, 8);
+        IntRect Body5Color1 = new IntRect(72, 36, 7, 8);
+        IntRect Body6Color1 = new IntRect(89, 36, 7, 8);
+        IntRect Body7Color1 = new IntRect(106, 36, 7, 8);
+        IntRect Body8Color1 = new IntRect(123, 36, 7, 8);
 
 
         public void draw(RenderWindow window)
@@ -63,6 +76,8 @@ namespace Centipede
                 spriteIndex = (currentSpriteIndex + animationOffset) % 7;
             }
 
+            
+
 
 
 
@@ -71,35 +86,92 @@ namespace Centipede
             {
                 if(spriteIndex == 0)
                 {
-                    sprite.TextureRect = Head2Color1;
+                    if(isHead)
+                    {
+                        sprite.TextureRect = Head2Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body2Color1;
+                    }
+                    
                 }
                 if (spriteIndex == 1)
                 {
-                    sprite.TextureRect = Head3Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head3Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body3Color1;
+                    }
                 }
                 if (spriteIndex == 2)
                 {
-                    sprite.TextureRect = Head4Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head4Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body4Color1;
+                    }
                 }
                 if (spriteIndex == 3)
                 {
-                    sprite.TextureRect = Head5Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head5Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body5Color1;
+                    }
                 }
                 if (spriteIndex == 4)
                 {
-                    sprite.TextureRect = Head6Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head6Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body6Color1;
+                    }
                 }
                 if (spriteIndex == 5)
                 {
-                    sprite.TextureRect = Head7Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head7Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body7Color1;
+                    }
                 }
                 if (spriteIndex == 6)
                 {
-                    sprite.TextureRect = Head8Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head8Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body8Color1;
+                    }
                 }
                 if (spriteIndex == 7)
                 {
-                    sprite.TextureRect = Head1Color1;
+                    if (isHead)
+                    {
+                        sprite.TextureRect = Head1Color1;
+                    }
+                    else
+                    {
+                        sprite.TextureRect = Body1Color1;
+                    }
                 }
 
                 if(currentSpriteIndex < 7)
@@ -119,9 +191,55 @@ namespace Centipede
 
         }
 
-        public void update()
+        public void move()
+        {
+            float leftBoundary = 100;
+            float rightBoundary = 1100;
+
+            if (isHead)
+            {
+                //Console.WriteLine($"Speed: {speed}  position x: {position.X} position.Y: {position.Y} sizeY: {size.Y}");
+            }
+            //Console.WriteLine($"Speed: {speed}  position x: {position.X} position.Y: {position.Y}");
+
+            if (movingRightOrLeft == "right")
+            {
+                position.X = position.X + speed;
+                sprite.Position = position;
+                if (position.X > rightBoundary)
+                {
+                    reverseDirection();
+                }
+            }
+            else
+            {
+                position.X = position.X - speed;
+                sprite.Position = position;
+                if (position.X < leftBoundary)
+                {
+                    reverseDirection();
+                }
+            }
+
+
+        }
+
+        public void reverseDirection()
         {
 
+
+            if(movingRightOrLeft == "right")
+            {
+                movingRightOrLeft = "left";
+            }
+            else
+            {
+                movingRightOrLeft = "right";
+            }
+
+
+            position.Y = position.Y + size.Y;
+           
         }
 
         public void setAnimationOffset(int newOffset)

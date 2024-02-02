@@ -20,8 +20,8 @@ namespace Centipede
     {
         Vector2f position = new Vector2f();
         Vector2f size = new Vector2f();
-        float scale = 5;
-        uint velocity = 10;
+        float scale = 4;
+        uint velocity = 5;
         Color color = new Color(0, 255, 0);
         RectangleShape bodyRect = new RectangleShape();
         Texture texture;

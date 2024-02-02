@@ -14,7 +14,7 @@ namespace Centipede
 
         Vector2f position = new Vector2f();
         Vector2f size = new Vector2f();
-        float scale = 5;
+        float scale = 4;
         uint damage = 0;
         bool isDead = false;
         Texture texture;

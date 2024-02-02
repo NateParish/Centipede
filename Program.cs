@@ -108,23 +108,21 @@ namespace SFML_Test
             Player player = new Player();
             Mushroom mushroom = new Mushroom();
             Vector2f playerSize = new Vector2f(8, 8);
-            Vector2f playerPosition = new Vector2f(800, 800);
+            Vector2f playerPosition = new Vector2f(600, 400);
             player.setSize(playerSize);
             player.setPosition(playerPosition);
             player.setSpriteSheet(spriteSheet);
             player.setupSprite();
             bool fire = false;
-            uint screenWidth = 1800;
-            uint screenHeight = 950;
-            uint gameboardWidth = 1600;
-            uint gameboardHeight = 750;
+            uint screenWidth = 1200;
+            uint screenHeight = 600;
             Vector2f gameboardPosition = new Vector2f(100, 100);
 
             Scoreboard scoreboard = new Scoreboard();
             scoreboard.setupScoreboard();
 
             BodySegment centipede = new BodySegment();
-            Vector2f centPos = new Vector2f(400, 800);
+            Vector2f centPos = new Vector2f(400, 400);
             Vector2f centSize = new Vector2f(16, 8);
 
             centipede.setPosition(centPos);
@@ -136,16 +134,16 @@ namespace SFML_Test
            
 
 
-            Vector2f mushroomPosition = new Vector2f(100, 250);
+            //Vector2f mushroomPosition = new Vector2f(100, 250);
             Vector2f mushroomSize = new Vector2f(8, 8);
-            mushroom.setSize(mushroomSize);
-            mushroom.setPosition(mushroomPosition);
-            mushroom.setSpriteSheet(spriteSheet);
-            mushroom.setupSprite();
+            //mushroom.setSize(mushroomSize);
+            //mushroom.setPosition(mushroomPosition);
+            //mushroom.setSpriteSheet(spriteSheet);
+            //mushroom.setupSprite();
 
             List<Mushroom> mushrooms = new List<Mushroom>();
             List<Mushroom> mushroomsTempList = new List<Mushroom>();
-            mushrooms.Add(mushroom);
+            //mushrooms.Add(mushroom);
 
             List<Laser> lasers = new List<Laser>();
             List<Laser> lasersTempList = new List<Laser>();
@@ -159,13 +157,13 @@ namespace SFML_Test
 
 
             EnemyCentipede centipede2 = new EnemyCentipede();
-            Vector2f cent2Pos = new Vector2f(400, 850);
+            Vector2f cent2Pos = new Vector2f(1200, 100);
             centipede2.setPosition(cent2Pos);
             centipede2.setSpriteSheet(spriteSheet);
-            centipede2.createBody(8);
+            centipede2.createBody(25);
 
 
-            spawnMushrooms(mushroomSize, gameboardPosition, gameboardHeight, gameboardWidth, mushrooms, spriteSheet);
+            //spawnMushrooms(mushroomSize, gameboardPosition, gameboardHeight, gameboardWidth, mushrooms, spriteSheet);
 
 
             Color windowColor = new Color(0, 0, 0);
@@ -289,10 +287,9 @@ namespace SFML_Test
 
 
                 scoreboard.update(player);
-                centipede.animate();
+                centipede2.move();
                 centipede2.animate();
                 scoreboard.draw(app);
-                centipede.draw(app);
                 centipede2.draw(app);
 
                 foreach(Mushroom shroom in mushrooms)
