@@ -25,9 +25,10 @@ namespace Centipede
         int currentSpriteIndex = 0;
         bool isHead = false;
         int animationOffset = 0;
-        string movingRightOrLeft = "left";
+        //string movingRightOrLeft = "left";
+        bool movingLeft = true;
         string movingUpOrDown = "down";
-        float speed = 4;
+        float speed;
         bool turnLeftFlag = false;
 
         IntRect Head1Color1 = new IntRect(4, 18, 7, 8);
@@ -75,8 +76,7 @@ namespace Centipede
             {
                 spriteIndex = (currentSpriteIndex + animationOffset) % 7;
             }
-
-            
+                       
 
 
 
@@ -194,7 +194,7 @@ namespace Centipede
         public void move()
         {
             float leftBoundary = 100;
-            float rightBoundary = 1100;
+            float rightBoundary = 1250;
 
             if (isHead)
             {
@@ -202,20 +202,20 @@ namespace Centipede
             }
             //Console.WriteLine($"Speed: {speed}  position x: {position.X} position.Y: {position.Y}");
 
-            if (movingRightOrLeft == "right")
+            if (movingLeft)
             {
-                position.X = position.X + speed;
+                position.X = position.X - speed;
                 sprite.Position = position;
-                if (position.X > rightBoundary)
+                if (position.X < leftBoundary)
                 {
                     reverseDirection();
                 }
             }
             else
             {
-                position.X = position.X - speed;
+                position.X = position.X + speed;
                 sprite.Position = position;
-                if (position.X < leftBoundary)
+                if (position.X > rightBoundary)
                 {
                     reverseDirection();
                 }
@@ -228,13 +228,13 @@ namespace Centipede
         {
 
 
-            if(movingRightOrLeft == "right")
+            if(movingLeft)
             {
-                movingRightOrLeft = "left";
+                movingLeft = false;
             }
             else
             {
-                movingRightOrLeft = "right";
+                movingLeft = true;
             }
 
 
@@ -280,6 +280,11 @@ namespace Centipede
         public bool getIsDead()
         {
             return isDead;
+        }
+
+        public void setSpeed(float newSpeed)
+        {
+            speed = newSpeed;
         }
 
         public void setupSprite()

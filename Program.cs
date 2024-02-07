@@ -157,13 +157,13 @@ namespace SFML_Test
 
 
             EnemyCentipede centipede2 = new EnemyCentipede();
-            Vector2f cent2Pos = new Vector2f(1200, 100);
+            Vector2f cent2Pos = new Vector2f(1000, 100);
             centipede2.setPosition(cent2Pos);
             centipede2.setSpriteSheet(spriteSheet);
             centipede2.createBody(25);
 
 
-            //spawnMushrooms(mushroomSize, gameboardPosition, gameboardHeight, gameboardWidth, mushrooms, spriteSheet);
+            spawnMushrooms(mushroomSize, gameboardPosition, screenHeight - 100, screenWidth - 50, mushrooms, spriteSheet);
 
 
             Color windowColor = new Color(0, 0, 0);
@@ -241,13 +241,13 @@ namespace SFML_Test
 
                     foreach(Mushroom shroom in mushrooms)
                     {
-                        if(laser.checkCollisionWithMushroom(shroom))
+                        
+                        if (laser.checkCollisionWithMushroom(shroom))
                         {
                             lasersTempList.Add(laser);
-                            shroom.takeDamage();
+                            shroom.takeDamage();                            
                         }
                     }
-
                 }
 
                 foreach (Laser laser in lasersTempList)
@@ -259,7 +259,9 @@ namespace SFML_Test
 
                 foreach(Mushroom shroom in mushrooms)
                 {
-                    if(shroom.getIsDead())
+                    centipede2.checkCollisionWithMushroom(shroom);
+
+                    if (shroom.getIsDead())
                     {
                         mushroomsTempList.Add(shroom);
                         player.addPointsToScore(1);
